@@ -13,7 +13,8 @@ export class Bot {
   constructor(public client: Client) {}
 
   channelToDirectory(channelName: string): string {
-    return "/" + channelName.replace(/^#/, "").replace(/-/g, "/");
+    // Use _ (underscore) as path separator, dashes are preserved
+    return "/" + channelName.replace(/^#/, "").replace(/_/g, "/");
   }
 
   async getOrCreateSession(thread: ThreadChannel): Promise<Session | null> {
